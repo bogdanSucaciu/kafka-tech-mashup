@@ -1,0 +1,28 @@
+# Create MongoDB Sink Connector
+curl -X POST -H "Content-Type: application/json" http://localhost:8083/connectors \
+--data '
+    {
+      "name": "sink-mongodb",
+      "config": {
+        "tasks.max":1,
+        "topics":"random-text-avro",
+        "connector.class":"at.grahsl.kafka.connect.mongodb.MongoDbSinkConnector",
+        "key.converter":"org.apache.kafka.connect.storage.StringConverter",
+        "value.converter":"io.confluent.connect.avro.AvroConverter",
+        "value.converter.schema.registry.url": "http://schema-registry:8081",
+        "mongodb.connection.uri": "mongodb://admin:admin@mongodb:27017/RandomText?authSource=admin",
+        "mongodb.collection":"randomText",
+        "topic.prefix": ""
+      }
+    }
+'
+
+
+# Display all databases
+show dbs
+
+# Create RandomText Database
+use RandomText
+
+# Query the `randomText` collection
+db.randomText.find()

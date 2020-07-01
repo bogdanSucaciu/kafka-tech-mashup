@@ -1,0 +1,28 @@
+logging:
+  level:
+    org.apache.kafka: info
+
+server:
+  port: 8080
+
+cluster:
+  autoCreateTopic: true
+  bootstrapServers: "localhost:9092"
+  securityProtocol: "PLAINTEXT"
+  ssl:
+    key-store-location: ""
+    key-password: ""
+    key-store-password: ""
+    trust-store-location: ""
+    trust-store-password: ""
+  topic:
+    minIsr: 1
+    partitions: 2
+    replicationFactor: 1
+    retentionMs: 3600000
+    segmentMs: 86400000
+    cleanupPolicy: "delete"
+    name: random-text
+  producer:
+    clientId: "spring-kafka-producer"
+

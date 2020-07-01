@@ -1,0 +1,30 @@
+-- Create Stream out of random-text topic
+CREATE STREAM RANDOM_TEXT (type VARCHAR, format VARCHAR, number INT, number_max INT, amount INT, time VARCHAR, text_out VARCHAR)
+WITH (KAFKA_TOPIC='random-text', VALUE_FORMAT='JSON');
+
+-- Display all incoming data in the RANDOM_TEXT data stream
+SELECT * FROM RANDOM_TEXT
+EMIT CHANGES;
+
+-- Aggregate data over a time window
+SELECT amount,
+       COUNT(*) as AMOUNT_COUNT
+FROM  RANDOM_TEXT
+WINDOW TUMBLING ( SIZE 10 MINUTES )
+GROUP BY amount
+EMIT CHANGES;
+
+-- Create `amount-count` topic containing windowed data
+CREATE TABLE AMOUNT_COUNT
+WITH (kafka_topic = 'amount-count',
+          partitions = 1, VALUE_FORMAT='AVRO') AS
+SELECT amount,
+       COUNT(*) as AMOUNT_COUNT
+FROM  RANDOM_TEXT
+WINDOW TUMBLING ( SIZE 10 MINUTES )
+GROUP BY amount;
+
+-- Convert JSON data to AVRO data
+CREATE STREAM RANDOM_TEXT_AVRO
+WITH (KAFKA_TOPIC='random-text-avro', VALUE_FORMAT='AVRO') AS
+SELECT * FROM RANDOM_TEXT;
