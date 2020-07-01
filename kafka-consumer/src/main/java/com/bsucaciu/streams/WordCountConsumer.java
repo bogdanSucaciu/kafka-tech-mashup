@@ -16,7 +16,7 @@ import java.util.Properties;
 @Slf4j
 public class WordCountConsumer {
 
-    private static String RANDOM_TEXT_TOPIC = "word-counts";
+    private static String RANDOM_TEXT_TOPIC = "word-count";
 
     public static void main(String[] args) {
 

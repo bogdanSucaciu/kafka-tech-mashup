@@ -27,7 +27,7 @@ public class WordCountStreamingApp {
         props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, RandomTextSerde.class);
 
         StreamsBuilder builder = new StreamsBuilder();
-        KStream<Integer, RandomText> textLines = builder.stream("random-text");
+        KStream<String, RandomText> textLines = builder.stream("random-text");
         textLines
                 .map((key, value) -> KeyValue.pair(String.valueOf(value.getText().split(WORD_REGEX).length), value))
                 .to("word-count");

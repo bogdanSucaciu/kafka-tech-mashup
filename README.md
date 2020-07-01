@@ -24,6 +24,12 @@ To start up the components ( Apache Zookeer, Kafka Broker, Confluent Control Cen
 docker-compose up -d
 ```
 
+To bring down the components run the following command:
+
+```
+docker-compose down
+```
+
 # Network Addresses
 Each component can be accessed through the following network address:
 

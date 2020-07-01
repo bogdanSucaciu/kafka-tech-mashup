@@ -1,8 +1,0 @@
-# Start the platform
-docker-compose up -d
-
-#Run KSQL Queries
-docker exec -it ksqldb-cli ksql
-
-#Run MongoDB CLI
-docker exec -it mongodb mongo -u admin -p admin
