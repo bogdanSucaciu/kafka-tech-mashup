@@ -15,7 +15,7 @@
         <spring.boot.version>2.3.1.RELEASE</spring.boot.version>
         <spring.kafka.version>2.5.2.RELEASE</spring.kafka.version>
         <kafka.verion>2.5.0</kafka.verion>
-        <jackson.version>2.11.0</jackson.version>
+        <jackson.version>2.12.7.1</jackson.version>
         <unirest.version>1.4.9</unirest.version>
         <lombok.version>1.18.6</lombok.version>
         <jackson.annotations.version>2.11.0</jackson.annotations.version>
